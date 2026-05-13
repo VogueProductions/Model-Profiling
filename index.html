@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Profile — Elite Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #A8D5B5;
+    --accent-mid: #7DC4A0;
+    --accent-light: #C8E8D5;
+    --accent-pale: #E8F5EE;
+    --black: #0D1F16;
+    --off-black: #102019;
+    --dark: #152B1E;
+    --mid: #1C3828;
+    --surface: #163022;
+    --surface-2: #1A3828;
+    --text: #EFF9F2;
+    --text-muted: #9ECFB0;
+    --text-dim: #4E7A62;
+    --border: rgba(168,213,181,0.14);
+    --border-strong: rgba(168,213,181,0.32);
+    --cream: #F5F0E8;
+    --blush: #F0D9D9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    background-color: var(--black);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 10% 5%,  rgba(168,213,181,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 65% at 90% 95%, rgba(125,196,160,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 35% 35% at 55% 45%, rgba(168,213,181,0.03) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 70px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .brand-line {
+    width: 40px;
+    height: 1px;
+    background: var(--accent-mid);
+    opacity: 0.5;
+  }
+
+  .brand-logo {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(48px, 7vw, 72px);
+    line-height: 1.05;
+    color: var(--text);
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header p {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* Section styling */
+  .section {
+    margin-bottom: 58px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.2s; }
+  .section:nth-child(3) { animation-delay: 0.3s; }
+  .section:nth-child(4) { animation-delay: 0.4s; }
+  .section:nth-child(5) { animation-delay: 0.5s; }
+  .section:nth-child(6) { animation-delay: 0.6s; }
+  .section:nth-child(7) { animation-delay: 0.7s; }
+  .section:nth-child(8) { animation-delay: 0.8s; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+  }
+
+  .section-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Grid layouts */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+
+  @media (max-width: 680px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .page-wrapper { padding: 40px 20px 80px; }
+  }
+
+  /* Form field */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+
+  .field:focus-within label { color: var(--accent); }
+
+  .field input,
+  .field select,
+  .field textarea {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 15px 18px;
+    outline: none;
+    transition: border-color 0.25s, background 0.25s;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--text-dim); font-weight: 400; }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--accent-mid);
+    background: var(--surface-2);
+  }
+
+  .field input:hover:not(:focus),
+  .field select:hover:not(:focus),
+  .field textarea:hover:not(:focus) {
+    border-color: rgba(61,107,82,0.3);
+  }
+
+  .field select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235A8C6E' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+  }
+
+  .field select option {
+    background: var(--off-black);
+    color: var(--text);
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+  }
+
+  /* Measurement unit hint */
+  .field-hint {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+
+  /* Radio / Checkbox groups */
+  .option-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .option-item {
+    position: relative;
+  }
+
+  .option-item input[type="radio"],
+  .option-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .option-item label {
+    display: inline-flex;
+    align-items: center;
+    padding: 11px 22px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .option-item label:hover {
+    border-color: var(--accent-light);
+    color: var(--accent);
+    background: rgba(61,107,82,0.05);
+  }
+
+  .option-item input:checked + label {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(61,107,82,0.08);
+  }
+
+  /* Consent area */
+  .consent-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-mid);
+    border-radius: 2px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+
+  .consent-block h4 {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .consent-block p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .consent-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .consent-check input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    background: transparent;
+    cursor: pointer;
+    margin-top: 1px;
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  .consent-check input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .consent-check input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: 1.5px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+
+  .consent-check span {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Submit area */
+  .submit-area {
+    text-align: center;
+    padding-top: 50px;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .submit-area::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 60px;
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+
+  .submit-btn:hover::before { transform: scaleX(1); }
+
+  .submit-btn:hover {
+    color: #fff;
+  }
+
+  .submit-btn span { position: relative; z-index: 1; }
+
+  .submit-btn svg {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s;
+  }
+
+  .submit-btn:hover svg { transform: translateX(4px); }
+
+  .submit-note {
+    margin-top: 18px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* submit note */
+
+  /* ── Upload Section ─────────────────────────────────────────────── */
+  .upload-zone {
+    border: 2px dashed var(--border-strong);
+    border-radius: 4px;
+    background: var(--surface);
+    padding: 36px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.25s, background 0.25s;
+    position: relative;
+  }
+  .upload-zone:hover, .upload-zone.drag-over {
+    border-color: var(--accent);
+    background: var(--surface-2);
+  }
+  .upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+  .upload-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    color: var(--accent-mid);
+  }
+  .upload-zone h3 {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+  .upload-zone p {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .upload-zone .upload-limit {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    letter-spacing: 0.04em;
+  }
+  /* Preview grid */
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .preview-item {
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    aspect-ratio: 1;
+  }
+  .preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .preview-item .preview-doc {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+  }
+  .preview-item .preview-doc svg { color: var(--accent-mid); }
+  .preview-item .preview-doc span {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-align: center;
+    word-break: break-all;
+    line-height: 1.3;
+  }
+  .preview-remove {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 22px;
+    height: 22px;
+    background: rgba(13,31,22,0.85);
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 13px;
+    line-height: 1;
+    transition: background 0.2s;
+  }
+  .preview-remove:hover { background: var(--mid); }
+  .preview-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(13,31,22,0.75);
+    font-size: 9px;
+    color: var(--accent-light);
+    text-align: center;
+    padding: 3px 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .upload-progress {
+    margin-top: 10px;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    display: none;
+  }
+  .upload-progress-bar {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.3s;
+  }
+  .upload-count {
+    font-size: 12px;
+    color: var(--accent-mid);
+    margin-top: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .headshot-wrap {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .headshot-preview-box {
+    width: 130px;
+    min-width: 130px;
+    height: 160px;
+    border: 2px dashed var(--border-strong);
+    border-radius: 4px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  .headshot-preview-box:hover { border-color: var(--accent); }
+  .headshot-preview-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .headshot-preview-box .hs-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+  .headshot-preview-box .hs-placeholder span {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+  .headshot-preview-box input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .headshot-remove {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 22px;
+    height: 22px;
+    background: rgba(13,31,22,0.85);
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 14px;
+    z-index: 2;
+  }
+  .file-error {
+    font-size: 12px;
+    color: #E8A0A0;
+    margin-top: 8px;
+    letter-spacing: 0.04em;
+  }
+
+  #success-msg {
+    display: none;
+    text-align: center;
+    padding: 50px 30px;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+  }
+
+  #success-msg .check-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+
+  #success-msg h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 28px;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  #success-msg p {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* Loading */
+  .submit-btn.loading::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Required asterisk */
+  .req { color: var(--accent-mid); margin-left: 2px; }
+
+  .span-full { grid-column: 1 / -1; }
+
+  /* Divider ornament */
+  .ornament {
+    text-align: center;
+    margin: 10px 0 32px;
+    color: var(--border-strong);
+    font-size: 16px;
+    letter-spacing: 0.5em;
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand-mark">
+      <div class="brand-line"></div>
+      <span class="brand-logo">Elite Model Agency</span>
+      <div class="brand-line"></div>
+    </div>
+    <h1>Model <em>Profile</em></h1>
+    <p>Confidential Application — Please complete all fields</p>
+  </header>
+
+  <form id="profileForm" novalidate>
+
+    <!-- 01 · Personal Information -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Personal Information</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Full Name <span class="req">*</span></label>
+          <input type="text" name="fullName" placeholder="As on official ID" required>
+        </div>
+        <div class="field">
+          <label>Date of Birth <span class="req">*</span></label>
+          <input type="date" name="dob" required>
+          <span class="field-hint">Must be 16 years or older</span>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Nationality <span class="req">*</span></label>
+          <input type="text" name="nationality" placeholder="e.g. Filipino, American">
+        </div>
+        <div class="field">
+          <label>Ethnicity</label>
+          <input type="text" name="ethnicity" placeholder="e.g. Asian, Latina, Mixed">
+        </div>
+      </div>
+      <div class="field">
+        <label>Gender <span class="req">*</span></label>
+        <div class="option-group" style="margin-top:4px;">
+          <div class="option-item">
+            <input type="radio" name="gender" id="g-female" value="Female">
+            <label for="g-female">Female</label>
+          </div>
+          <div class="option-item">
+            <input type="radio" name="gender" id="g-male" value="Male">
+            <label for="g-male">Male</label>
+          </div>
+          <div class="option-item">
+            <input type="radio" name="gender" id="g-nb" value="Non-binary">
+            <label for="g-nb">Non-binary</label>
+          </div>
+          <div class="option-item">
+            <input type="radio" name="gender" id="g-other" value="Other">
+            <label for="g-other">Other</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 · Contact Information -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">Contact Information</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" name="phone" placeholder="+1 (000) 000-0000" required>
+        </div>
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Instagram Handle</label>
+          <input type="text" name="instagram" placeholder="@username">
+        </div>
+        <div class="field">
+          <label>Facebook Profile</label>
+          <input type="text" name="facebook" placeholder="@username or URL">
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 · Physical Attributes -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Physical Attributes</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="grid-4" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Height <span class="req">*</span></label>
+          <input type="text" name="height" placeholder='e.g. 5\'9" / 175cm'>
+        </div>
+        <div class="field">
+          <label>Weight</label>
+          <input type="text" name="weight" placeholder="e.g. 60kg / 130lbs">
+        </div>
+        <div class="field">
+          <label>Shoe Size</label>
+          <input type="text" name="shoeSize" placeholder="e.g. EU 38 / US 7">
+        </div>
+        <div class="field">
+          <label>Skin Tone</label>
+          <select name="skinTone">
+            <option value="">Select</option>
+            <option>Fair</option>
+            <option>Light</option>
+            <option>Medium</option>
+            <option>Olive</option>
+            <option>Tan</option>
+            <option>Dark</option>
+            <option>Deep</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-4" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Hair Color</label>
+          <select name="hairColor">
+            <option value="">Select</option>
+            <option>Black</option>
+            <option>Dark Brown</option>
+            <option>Brown</option>
+            <option>Light Brown</option>
+            <option>Blonde</option>
+            <option>Red</option>
+            <option>Auburn</option>
+            <option>Gray / Silver</option>
+            <option>White</option>
+            <option>Dyed / Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Eye Color</label>
+          <select name="eyeColor">
+            <option value="">Select</option>
+            <option>Black</option>
+            <option>Dark Brown</option>
+            <option>Brown</option>
+            <option>Hazel</option>
+            <option>Green</option>
+            <option>Blue</option>
+            <option>Gray</option>
+            <option>Amber</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 · Body Measurements -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">Body Measurements</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="grid-4">
+        <div class="field">
+          <label>Bust / Chest</label>
+          <input type="text" name="bust" placeholder='e.g. 34" / 86cm'>
+          <span class="field-hint">inches or cm</span>
+        </div>
+        <div class="field">
+          <label>Waist</label>
+          <input type="text" name="waist" placeholder='e.g. 26" / 66cm'>
+          <span class="field-hint">inches or cm</span>
+        </div>
+        <div class="field">
+          <label>Hips</label>
+          <input type="text" name="hips" placeholder='e.g. 36" / 91cm'>
+          <span class="field-hint">inches or cm</span>
+        </div>
+        <div class="field">
+          <label>Inseam</label>
+          <input type="text" name="inseam" placeholder='e.g. 32" / 81cm'>
+          <span class="field-hint">inches or cm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 · Modeling Experience -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <span class="section-title">Modeling Experience</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Years of Experience</label>
+          <select name="yearsExp">
+            <option value="">Select range</option>
+            <option>New / No experience</option>
+            <option>Less than 1 year</option>
+            <option>1–2 years</option>
+            <option>3–5 years</option>
+            <option>6–10 years</option>
+            <option>10+ years</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Fashion Preference</label>
+          <select name="fashionPref">
+            <option value="">Select style</option>
+            <option>High Fashion / Couture</option>
+            <option>Commercial / Catalog</option>
+            <option>Editorial</option>
+            <option>Street Style</option>
+            <option>Casual / Lifestyle</option>
+            <option>Swimwear / Fitness</option>
+            <option>Avant-Garde</option>
+            <option>All Styles</option>
+          </select>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:20px;">
+        <label>Types of Modeling Done</label>
+        <div class="option-group" style="margin-top:6px;">
+          <div class="option-item"><input type="checkbox" name="modelType" id="mt-fashion" value="Fashion"><label for="mt-fashion">Fashion</label></div>
+          <div class="option-item"><input type="checkbox" name="modelType" id="mt-commercial" value="Commercial"><label for="mt-commercial">Commercial</label></div>
+          <div class="option-item"><input type="checkbox" name="modelType" id="mt-editorial" value="Editorial"><label for="mt-editorial">Editorial</label></div>
+          <div class="option-item"><input type="checkbox" name="modelType" id="mt-runway" value="Runway"><label for="mt-runway">Runway</label></div>
+          <div class="option-item"><input type="checkbox" name="modelType" id="mt-fitness" value="Fitness"><label for="mt-fitness">Fitness</label></div>
+          <div class="option-item"><input type="checkbox" name="modelType" id="mt-print" value="Print"><label for="mt-print">Print / Catalog</label></div>
+          <div class="option-item"><input type="checkbox" name="modelType" id="mt-tv" value="TV / Film"><label for="mt-tv">TV / Film</label></div>
+          <div class="option-item"><input type="checkbox" name="modelType" id="mt-parts" value="Parts"><label for="mt-parts">Parts (Hands, Feet)</label></div>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:20px;">
+        <label>Previous Agencies Worked With</label>
+        <input type="text" name="prevAgencies" placeholder="Agency names, or 'None'">
+      </div>
+      <div class="field">
+        <label>Previous Assignments</label>
+        <textarea name="prevAssignments" placeholder="Brands, campaigns, runway shows, editorials — describe briefly..."></textarea>
+      </div>
+    </div>
+
+    <!-- 06 · Training & Education -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <span class="section-title">Training &amp; Education</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="field">
+        <label>Modeling Training</label>
+        <textarea name="training" placeholder="Modeling classes, workshops, runway coaching, acting classes, professional training..."></textarea>
+      </div>
+    </div>
+
+    <!-- 07 · Personal Profile -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <span class="section-title">Personal Profile</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="field" style="margin-bottom:20px;">
+        <label>Why Do You Want to Model? <span class="req">*</span></label>
+        <textarea name="whyModel" placeholder="Share your passion for modeling and what drives your ambition..." required></textarea>
+      </div>
+      <div class="field" style="margin-bottom:20px;">
+        <label>Additional Skills &amp; Talents</label>
+        <textarea name="skills" placeholder="Photography, makeup artistry, fashion styling, dancing, acting, languages spoken..."></textarea>
+      </div>
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Interests &amp; Hobbies</label>
+          <textarea name="hobbies" placeholder="Fitness, travel, art, music — interests relevant to brand campaigns..."></textarea>
+        </div>
+        <div class="field">
+          <label>Family Background</label>
+          <textarea name="familyBg" placeholder="Brief background — supportive environment, family in the industry, etc."></textarea>
+        </div>
+      </div>
+      <div class="field">
+        <label>Additional Information</label>
+        <textarea name="additionalInfo" placeholder="Any other information that may help the agency in evaluating your profile..."></textarea>
+      </div>
+    </div>
+
+    <!-- 08 · Consent & Privacy -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <span class="section-title">Consent &amp; Privacy</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="consent-block">
+        <h4>Photography &amp; Video Consent</h4>
+        <p>I grant the agency permission to use my photographs, video footage, and likeness for portfolio display, agency website, social media channels, and promotional materials in connection with my representation.</p>
+        <label class="consent-check">
+          <input type="checkbox" name="consentPhoto" required>
+          <span>I consent to the use of my image and video for the purposes described above. <span class="req">*</span></span>
+        </label>
+      </div>
+
+      <div class="consent-block">
+        <h4>Privacy &amp; Data Agreement</h4>
+        <p>Your personal data will be stored securely and may be shared with potential clients and collaborators solely for the purpose of securing modeling opportunities on your behalf. Data will not be sold to third parties.</p>
+        <label class="consent-check">
+          <input type="checkbox" name="consentPrivacy" required>
+          <span>I consent to the storage and use of my personal data as described. <span class="req">*</span></span>
+        </label>
+      </div>
+
+      <div class="consent-block">
+        <h4>Non-Disclosure Agreement <span style="color:var(--text-dim);font-size:11px;letter-spacing:0.1em;"> — Optional</span></h4>
+        <p>Agreeing to this NDA means you will keep confidential all details of modeling assignments, client identities, fees, and terms of engagement unless authorized by the agency in writing.</p>
+        <label class="consent-check">
+          <input type="checkbox" name="consentNDA">
+          <span>I agree to keep assignment details confidential as described above.</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 09 · Photos & Portfolio -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <span class="section-title">Photos &amp; Portfolio</span>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Headshot -->
+      <div class="field" style="margin-bottom:28px;">
+        <label>Primary Headshot <span class="req">*</span></label>
+        <div class="headshot-wrap">
+          <div class="headshot-preview-box" id="headshotBox">
+            <input type="file" id="headshotInput" accept="image/jpeg,image/png,image/webp" aria-label="Upload headshot">
+            <div class="hs-placeholder" id="headshotPlaceholder">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="color:var(--accent-mid)">
+                <circle cx="14" cy="10" r="5" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              <span>Upload<br>Headshot</span>
+            </div>
+            <div class="headshot-remove" id="headshotRemove" onclick="removeHeadshot(event)">×</div>
+          </div>
+          <div style="flex:1;">
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:10px;">Upload a clear, professional headshot — front-facing, good lighting, neutral background preferred.</p>
+            <p style="font-size:12px;color:var(--text-dim);letter-spacing:0.04em;">Accepted: JPG, PNG, WEBP &nbsp;·&nbsp; Max size: 5 MB</p>
+            <div class="file-error" id="headshotError" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Images -->
+      <div class="field" style="margin-bottom:28px;">
+        <label>Portfolio Images</label>
+        <div class="upload-zone" id="portfolioZone">
+          <input type="file" id="portfolioInput" accept="image/jpeg,image/png,image/webp" multiple aria-label="Upload portfolio images">
+          <div class="upload-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 13V4M6 7l4-4 4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 14v1a2 2 0 002 2h10a2 2 0 002-2v-1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Drag &amp; drop portfolio images</h3>
+          <p>or click to browse your files</p>
+          <p class="upload-limit">JPG · PNG · WEBP &nbsp;·&nbsp; Up to 8 images &nbsp;·&nbsp; Max 5 MB each</p>
+        </div>
+        <div class="upload-progress" id="portfolioProgress"><div class="upload-progress-bar" id="portfolioBar"></div></div>
+        <div class="upload-count" id="portfolioCount" style="display:none;"></div>
+        <div class="preview-grid" id="portfolioPreviews"></div>
+        <div class="file-error" id="portfolioError" style="display:none;"></div>
+      </div>
+
+      <!-- Comp Card / PDF -->
+      <div class="field">
+        <label>Comp Card / Portfolio PDF <span style="color:var(--text-dim);font-size:11px;font-weight:400;letter-spacing:0.06em;"> — Optional</span></label>
+        <div class="upload-zone" id="compZone" style="padding:24px;">
+          <input type="file" id="compInput" accept=".pdf,application/pdf" aria-label="Upload comp card PDF">
+          <div class="upload-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="4" y="2" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M7 7h6M7 10h6M7 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Upload Comp Card or PDF Portfolio</h3>
+          <p class="upload-limit">PDF only &nbsp;·&nbsp; Max 10 MB</p>
+        </div>
+        <div id="compPreview" style="display:none; margin-top:12px; padding:14px 18px; background:var(--surface); border:1px solid var(--border); border-radius:3px; display:none; align-items:center; gap:12px;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="color:var(--accent-mid);flex-shrink:0;">
+            <rect x="3" y="1" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M6 7h8M6 10h8M6 13h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <span id="compFileName" style="font-size:13px;color:var(--text);flex:1;"></span>
+          <span id="compFileSize" style="font-size:12px;color:var(--text-dim);"></span>
+          <button type="button" onclick="removeComp()" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:18px;line-height:1;padding:0 4px;">×</button>
+        </div>
+        <div class="file-error" id="compError" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-area">
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span>Submit Profile</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <p class="submit-note">All fields marked <span style="color:var(--accent-mid)">✦</span> are required &nbsp;·&nbsp; Your data is handled with strict confidentiality</p>
+    </div>
+
+  </form>
+
+  <!-- Success Message -->
+  <div id="success-msg">
+    <div class="check-icon">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M4 11l5 5 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h3>Application Received</h3>
+    <p>Thank you for submitting your profile. Our team will review your application and be in touch within 5–7 business days.</p>
+  </div>
+
+</div>
+
+<script>
+  // ── CONFIG ──────────────────────────────────────────────────────────────
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXbjVwoP24B2ctbHcjTSzCwTehEIKIs8Z3O3UbY5uVnMWlhdBjsElbzwxOU2Nn-F3Bkw/exec';
+  // ────────────────────────────────────────────────────────────────────────
+
+  const form       = document.getElementById('profileForm');
+  const btn        = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('success-msg');
+
+  // ── File state ──────────────────────────────────────────────────────────
+  let headshotFile     = null;   // single File object
+  let portfolioFiles   = [];     // array of File objects (max 8)
+  let compFile         = null;   // single File object
+
+  const MAX_IMAGE_BYTES = 5 * 1024 * 1024;   // 5 MB
+  const MAX_PDF_BYTES   = 10 * 1024 * 1024;  // 10 MB
+  const MAX_PORTFOLIO   = 8;
+
+  // ── Helpers ─────────────────────────────────────────────────────────────
+  function fmtSize(bytes) {
+    return bytes < 1024 * 1024
+      ? (bytes / 1024).toFixed(0) + ' KB'
+      : (bytes / (1024*1024)).toFixed(1) + ' MB';
+  }
+
+  function fileToBase64(file) {
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload  = () => res(r.result.split(',')[1]);
+      r.onerror = () => rej(new Error('Failed to read file'));
+      r.readAsDataURL(file);
+    });
+  }
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.style.display = msg ? 'block' : 'none';
+  }
+
+  // ── Headshot ─────────────────────────────────────────────────────────────
+  document.getElementById('headshotInput').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    if (file.size > MAX_IMAGE_BYTES) {
+      showError('headshotError', `File too large (${fmtSize(file.size)}). Maximum is 5 MB.`);
+      this.value = '';
+      return;
+    }
+    showError('headshotError', '');
+    headshotFile = file;
+    const url = URL.createObjectURL(file);
+    const box = document.getElementById('headshotBox');
+    // replace placeholder with image
+    let img = box.querySelector('img');
+    if (!img) {
+      img = document.createElement('img');
+      box.appendChild(img);
+    }
+    img.src = url;
+    document.getElementById('headshotPlaceholder').style.display = 'none';
+    document.getElementById('headshotRemove').style.display = 'flex';
+  });
+
+  window.removeHeadshot = function(e) {
+    e.stopPropagation();
+    headshotFile = null;
+    const box = document.getElementById('headshotBox');
+    const img = box.querySelector('img');
+    if (img) img.remove();
+    document.getElementById('headshotPlaceholder').style.display = 'flex';
+    document.getElementById('headshotRemove').style.display = 'none';
+    document.getElementById('headshotInput').value = '';
+  };
+
+  // ── Portfolio Images ──────────────────────────────────────────────────────
+  const portfolioInput = document.getElementById('portfolioInput');
+  const portfolioZone  = document.getElementById('portfolioZone');
+
+  portfolioInput.addEventListener('change', handlePortfolioFiles);
+
+  // Drag and drop
+  portfolioZone.addEventListener('dragover',  e => { e.preventDefault(); portfolioZone.classList.add('drag-over'); });
+  portfolioZone.addEventListener('dragleave', ()  => portfolioZone.classList.remove('drag-over'));
+  portfolioZone.addEventListener('drop', e => {
+    e.preventDefault();
+    portfolioZone.classList.remove('drag-over');
+    handlePortfolioFiles({ target: { files: e.dataTransfer.files } });
+  });
+
+  function handlePortfolioFiles(e) {
+    const incoming = Array.from(e.target.files || []);
+    let errors = [];
+
+    incoming.forEach(file => {
+      if (portfolioFiles.length >= MAX_PORTFOLIO) {
+        errors.push(`Maximum ${MAX_PORTFOLIO} images allowed.`);
+        return;
+      }
+      if (file.size > MAX_IMAGE_BYTES) {
+        errors.push(`"${file.name}" is too large (${fmtSize(file.size)}). Max 5 MB.`);
+        return;
+      }
+      portfolioFiles.push(file);
+    });
+
+    showError('portfolioError', errors.length ? errors[0] : '');
+    renderPortfolioPreviews();
+    portfolioInput.value = '';
+  }
+
+  function renderPortfolioPreviews() {
+    const grid  = document.getElementById('portfolioPreviews');
+    const count = document.getElementById('portfolioCount');
+    grid.innerHTML = '';
+
+    portfolioFiles.forEach((file, i) => {
+      const item = document.createElement('div');
+      item.className = 'preview-item';
+
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      item.appendChild(img);
+
+      const lbl = document.createElement('div');
+      lbl.className = 'preview-label';
+      lbl.textContent = fmtSize(file.size);
+      item.appendChild(lbl);
+
+      const rm = document.createElement('div');
+      rm.className = 'preview-remove';
+      rm.textContent = '×';
+      rm.onclick = () => { portfolioFiles.splice(i, 1); renderPortfolioPreviews(); };
+      item.appendChild(rm);
+
+      grid.appendChild(item);
+    });
+
+    if (portfolioFiles.length > 0) {
+      count.style.display = 'block';
+      count.textContent = `${portfolioFiles.length} / ${MAX_PORTFOLIO} images selected`;
+    } else {
+      count.style.display = 'none';
+    }
+  }
+
+  // ── Comp Card PDF ─────────────────────────────────────────────────────────
+  document.getElementById('compInput').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    if (file.size > MAX_PDF_BYTES) {
+      showError('compError', `File too large (${fmtSize(file.size)}). Maximum is 10 MB.`);
+      this.value = '';
+      return;
+    }
+    showError('compError', '');
+    compFile = file;
+    document.getElementById('compFileName').textContent = file.name;
+    document.getElementById('compFileSize').textContent  = fmtSize(file.size);
+    document.getElementById('compPreview').style.display = 'flex';
+    document.getElementById('compZone').style.display    = 'none';
+  });
+
+  window.removeComp = function() {
+    compFile = null;
+    document.getElementById('compInput').value = '';
+    document.getElementById('compPreview').style.display = 'none';
+    document.getElementById('compZone').style.display    = '';
+  };
+
+  // ── Form Submit ────────────────────────────────────────────────────────────
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Validate required non-file fields
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(el => {
+      if (el.type === 'checkbox' && !el.checked) {
+        el.closest('.consent-check').style.outline = '1px solid #7DC4A0';
+        valid = false;
+      } else if (el.type !== 'checkbox' && el.type !== 'file' && !el.value.trim()) {
+        el.style.borderColor = '#7DC4A0';
+        el.style.background  = 'rgba(168,213,181,0.06)';
+        valid = false;
+        el.addEventListener('input', () => { el.style.borderColor = ''; el.style.background = ''; }, { once: true });
+      }
+    });
+
+    // Validate headshot required
+    if (!headshotFile) {
+      showError('headshotError', 'A headshot photo is required.');
+      valid = false;
+    }
+
+    if (!valid) {
+      const firstInvalid = form.querySelector('[required]');
+      if (firstInvalid) window.scrollTo({ top: firstInvalid.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+      return;
+    }
+
+    // Loading state
+    btn.classList.add('loading');
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Uploading…';
+
+    try {
+      // Encode files to base64
+      const headshotB64 = headshotFile ? await fileToBase64(headshotFile) : null;
+
+      btn.querySelector('span').textContent = 'Sending…';
+
+      const portfolioB64 = [];
+      for (const f of portfolioFiles) {
+        portfolioB64.push({
+          name:     f.name,
+          mimeType: f.type,
+          data:     await fileToBase64(f),
+        });
+      }
+
+      const compB64 = compFile ? {
+        name:     compFile.name,
+        mimeType: 'application/pdf',
+        data:     await fileToBase64(compFile),
+      } : null;
+
+      const modelTypes = [...form.querySelectorAll('[name="modelType"]:checked')].map(c => c.value).join(', ');
+
+      const payload = {
+        timestamp:       new Date().toLocaleString(),
+        fullName:        form.fullName.value,
+        dob:             form.dob.value,
+        gender:          form.gender.value,
+        nationality:     form.nationality.value,
+        ethnicity:       form.ethnicity.value,
+        phone:           form.phone.value,
+        email:           form.email.value,
+        instagram:       form.instagram.value,
+        facebook:        form.facebook.value,
+        height:          form.height.value,
+        weight:          form.weight.value,
+        shoeSize:        form.shoeSize.value,
+        skinTone:        form.skinTone.value,
+        hairColor:       form.hairColor.value,
+        eyeColor:        form.eyeColor.value,
+        bust:            form.bust.value,
+        waist:           form.waist.value,
+        hips:            form.hips.value,
+        inseam:          form.inseam.value,
+        yearsExp:        form.yearsExp.value,
+        fashionPref:     form.fashionPref.value,
+        modelTypes,
+        prevAgencies:    form.prevAgencies.value,
+        prevAssignments: form.prevAssignments.value,
+        training:        form.training.value,
+        whyModel:        form.whyModel.value,
+        skills:          form.skills.value,
+        hobbies:         form.hobbies.value,
+        familyBg:        form.familyBg.value,
+        additionalInfo:  form.additionalInfo.value,
+        consentPhoto:    form.consentPhoto.checked    ? 'Yes' : 'No',
+        consentPrivacy:  form.consentPrivacy.checked  ? 'Yes' : 'No',
+        consentNDA:      form.consentNDA.checked      ? 'Yes' : 'No',
+        // Files
+        headshot: headshotB64 ? {
+          name:     headshotFile.name,
+          mimeType: headshotFile.type,
+          data:     headshotB64,
+        } : null,
+        portfolio: portfolioB64,
+        compCard:  compB64,
+      };
+
+      await fetch(SCRIPT_URL, {
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+
+      form.style.display       = 'none';
+      successMsg.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      btn.classList.remove('loading');
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Submit Profile';
+      alert('Upload failed. Please check your connection and try again.');
+      console.error(err);
+    }
+  });
+</script>
+</body>
+</html>
